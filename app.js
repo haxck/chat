@@ -70,10 +70,6 @@ io.on('connection', function(socket) {
             time: saytime
         });
     });
-
-
-
-
 });
 
 
