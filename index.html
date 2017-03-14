@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>chat</title>
-	<script src="js/jquery.min.js"></script>
 	<script src="js/socket.io-1.2.0.js"></script>
+	<script src="js/jquery.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
         <style type="text/css">
             .userlist{
@@ -14,6 +14,9 @@
             .talk{
                 height: 500px;
                 overflow-y: scroll;
+            }
+            .show{
+            	display: none;
             }
         </style>
 </head>
@@ -63,7 +66,7 @@
 
             <!-- 输入框 -->
             <div class="input-group input-group-lg">
-                <input type="text" class="form-control" id="input-edit" placeholder="请输入聊天内容">
+                <input type="text" class="form-control" v-model="post" placeholder="请输入聊天内容">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" @click="say">
                         发送
@@ -75,7 +78,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+<div class="modal fade in" tabindex="-1" role="dialog" data-backdrop="false" ref="myModal" id="myModal" :class="{show: isShow}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -93,6 +96,7 @@
     </div>
   </div>
 </div>
+
 </body>
 <script src="js/bootstrap.js"></script>
 <script src="js/vue.js"></script>
@@ -103,7 +107,9 @@ var vm = new Vue({
         msg: [],
         onlineNum: 0,
         name:"",
-        onclinetList: []
+        onclinetList: [],
+        isShow: true,
+        post:""
     },
     computed: {
         name: function(){
@@ -112,21 +118,26 @@ var vm = new Vue({
     },
     methods:{
         say:function(){
-            var data = $("#input-edit").val()
+        	if(this.post.trim() ==''){
+        		alert("Input somethings , please")
+        		return 
+        	}
+            var data = this.post
             socket.emit('say',data)
+            this.post = ""
         },
         join:function(){
             self = this
+            if (self.name == '') {
+                alert("input your name")
+                return
+            }
             socket = io().connect("http://" + window.location.host);
             //socket连接
             socket.on('connect', function(sockets) {
                 console.log('connect...');
-                if (self.name=='') {
-                    alert("input your name")
-                    return
-                }
                 socket.emit('join',{nickname: self.name});
-                $('#myModal').modal('hide')
+                self.isShow = false
             });
             //加入成功
             socket.on('joinsuccess', function(data) {
@@ -147,9 +158,5 @@ var vm = new Vue({
         }
     }
 })
-$(function(){
-    $('#myModal').modal('show')
-})
-
     </script>
 </html>
