@@ -1,0 +1,29 @@
+.ChatList{
+  flex-direction:row;
+  background: #434753;
+  width:33%;
+  border-radius: 8px 0 0 8px;
+}
+.media{
+  overflow: hidden;
+  margin: 14px;
+}
+
+.media-left{
+  display: table-cell;
+  vertical-align: top;
+  padding-right: 10px;
+}
+.media-object{
+  border-radius: 50%;
+  width:48px;
+  height: 48px;
+}
+.media-body{
+  display: table-cell;
+  vertical-align: top;
+  padding: 8px;
+}
+.media-heading{
+  color: white;
+}

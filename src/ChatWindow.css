@@ -1,0 +1,7 @@
+.ChatWindow{
+  background:#eee;
+  display: flex;
+  flex-direction:column;
+  justify-content: space-between;
+  width:77%;
+}
