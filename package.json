@@ -1,5 +1,5 @@
 {
-  "name": "index",
+  "name": "ChatApp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,7 +7,9 @@
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "express": "^4.15.2",
+    "react-scripts": "0.9.5",
+    "socket.io": "^1.7.3"
   },
   "scripts": {
     "start": "react-scripts start",
