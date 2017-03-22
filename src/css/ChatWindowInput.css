@@ -1,4 +1,28 @@
 .ChatWindowInput{
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+}
+textarea{
+  width: 100%;
+  border: 1px solid rgba(34, 36, 38, 0.14902);
+  outline: none;
+  resize: none;
+  height: 60px;
+  padding: 6px;
+  color: #95CEF1;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+
+}
+.ChatWindowInput a{
+  color: #95CEF1;
   align-self: flex-end;
+  display: flex;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  padding: 8px;
+  border-radius: 4px;
+ 
 }
