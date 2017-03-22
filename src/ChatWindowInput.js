@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ChatWindowInput.css'
+import './css/ChatWindowInput.css'
 
 class ChatWindowInput extends Component {
   render() {

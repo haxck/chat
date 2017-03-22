@@ -1,8 +1,7 @@
-import socket from 'socket.io-client'
-var io = socket('http://localhost:80')
+import io from 'socket.io-client'
+var Socket = io.connect('http://localhost:80')
 
-io.on('news', function (data) {
+Socket.on('news', (data) => {
     console.log(data);
-    io.emit('my other event', { my: 'data' });
+    Socket.emit('my other event', { my: 'data' });
   });
-export default io
